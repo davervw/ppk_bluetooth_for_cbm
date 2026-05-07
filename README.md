@@ -1,56 +1,75 @@
-# Palm Portable Keyboard Bluetooth Adapter
+# Palm Portable Keyboard Bluetooth adapter firmware for a Commodore Emulator
 
-This project is a DIY Bluetooth module for the Palm Portable Keyboards (PPK), so you can assemble it to your PPK and use it with any host that supports BLE (Bluetooth 4.0 and later).
+This project specifically supports [Unified branch of davervw/c-simple-emu6502-cbm](https://github.com/davervw/c-simple-emu6502-cbm/tree/unified) so that keypresses are sent to the emulator so the systems think a full Commodore keyboard is attached.  Some "magic" (mapping) is included to have one code base support Vic-20, Commodore 64, Commodore 128, and a resemblence of a minimal 6502 system similar to Apple 1.  (Note the emulator is not game nor sound compatible, the emphasis is on coding, wearables, and cross-platform deployments.  More notes over at the emulator's link above.)
 
-Where to buy:
+The advantage of a bluetooth keyboard is no cords of course.  BLE is supported by most all ESP32 targets which is a large number of my targets for the emulator.
 
-I've made some version 3 adapter for sale. Here is the link to the product: [https://www.tindie.com/products/26595/](https://www.tindie.com/products/26595/)
+This is a fork derived from [https://github.com/pymo/ppk_bluetooth](https://github.com/pymo/ppk_bluetooth) whose work produced a BLE HID Bluetooth adapter for PPK (Palm Portable Keyboard) in at least three different versions with different circuit targets.  Only version 2 of the hardware (using LILYGO TTGO T-OI PLUS ESP32-C3) is supported here for my Commodore emulator.   Thanks to Xinming Chen for his work, support, and selling these adapters.   Version 2 is probably no longer available as it was replaced by version 3, but there are instructions on making your own.
 
-Demo on Youtube:
+This branch contains only version 2 source and nothing extra.  For the original pymo source, instructions, context, etc. see the original repo.
 
-[![Bluetooth Palm Portable Keyboard demo](http://img.youtube.com/vi/qPznzD5e45k/0.jpg)](https://www.youtube.com/watch?v=qPznzD5e45k "Version 3 of my Palm Portable Keyboard Bluetooth Adapter (CH582F based)")
+![photo](media/m5cores3_wearable.jpg)
 
-This project is inspired by [cy384](https://github.com/cy384/ppk_usb)'s USB PPK adapter, and [Christian](https://hackaday.io/project/181800-palm-pilot-keyboard-bluetooth-conversion)'s ESP32-based PPK bluetooth adapter. 
+Palm Portable Keyboard
 
-I've made 3 versions of the adapter: version 1 is based on an Adafruit Feather nRF52840 Express board, version 2 is based on a LilyGo-T-OI-PLUS ESP32-C3 board. version 3 is based on my custom designed CH582F board. Here are the differences of these versions.
+       1   2   3   4   5   6   7   8   9   0   -   =  Back     Date
+    Tab Q   W   E   R   T   Y   U   I   O   P   [   ]    \     Phone
+    Caps A   S   D   F   G   H   J   K   L   ;   '   Enter     To Do
+    LShf  Z   X   C   V   B   N   M   ,   .   /   RShft Up     Memo
+    Ctl Fn Alt Cmd {Space  Bar}Spc2 ` Done{Delete}Lt Dn Rt
 
-| version | Build Tutorial | Highlights | 
-| :-------: | :-----------------------------------------------------------------: | :------: |
-| Version 1 | [Tutorial](version1_tutorial.md) | Based on an Adafruit Feather nRF52840 Express board. Experimental, no longer supported. Hard to make. Expensive. Micro USB charging. |
-| Version 2 | [Tutorial](version2_tutorial.md) | Based on a LilyGo-T-OI-PLUS ESP32-C3 board. Easy to build, cheap, power hungry, no USB HID support. Type-C charging. no longer supported. |
-| Version 3 | [Tutorial](version3_tutorial.md) | Based on my custom designed PCB using CH582F chip. Easier to build, cheap, power efficient, USB HID support. Multi-host support. Type-C charging. |
+Mapping to Commodore 64, etc.
 
-version 3 is the current one I sell in my online store. If you want to DIY and don't want to buy my board, you can choose version 2. version 1 is really old and no longer supported.
+       1   2   3   4   5   6   7   8   9   0   -   =  Back     F1
+    Tab Q   W   E   R   T   Y   U   I   O   P   [   ]    £     F3
+    Cap  A   S   D   F   G   H   J   K   L   ;   '   Retrn     F5
+    LShf  Z   X   C   V   B   N   M   ,   .   /   RShft Up     F7
+    Ctr Fn Alt Cbm {Space  Bar}Rest ` Stop{Delete}Lt Dn Rt
 
-- Supported keyboard types
-  - Palm III keyboard (p/n P10713U or 3C10317)
-  - Palm V keyboard (p/n 3C10439 or Belkin F8E458)
-  - Palm M500 keyboard (p/n P10802U or Belkin F8P3501)
-  - Handspring Visor (Targus PA800)
-  - HP Jornada (Targus PA820)
-  - Sony Clie (Targus PA830)
-- Unsupported keyboard types
-  - connectors for Treo, other PDA/phones, IrDA version.
-  - Compaq iPaq PocketPC (Taugus PA840)
+C128 adds more keys on top row, and a numeric keypad.  Most don't exist on Palm
 
-Special Key mapping
------------
-- Fn+Tab for Esc
-- Fn+number keys for F1-F10, Fn+- for F11, Fn+= for F12
-- Fn+up for volume up, Fn+down for volume down
-- Fn+left for brightness down, and Fn+right for brightness up.
-- Fn+Cmd is Homepage key (Home button in iOS and Android).
-- Cmd is mapped to Windows/Apple key.
-- Date is mapped to Home, Phone is mapped to End.
-- To-Do is mapped to PageUp, Memo is mapped to PageDown.
-- Done is mapped to Insert.
+    Esc Tab Alt Cap     Help LF 40/80 NoScroll     Up Dn Lt Rt      F1 F3 F5 F7
 
-Coverage
------------
-Here are some blog posts covering this project:
-- [Palm Portable Keyboard Goes Wireless](https://hackaday.com/2022/02/08/palm-portable-keyboard-goes-wireless/) on Hackaday.
-- [Upcycling a Palm Portable Keyboard Into a Bluetooth-Enabled Accessory](https://www.hackster.io/news/upcycling-a-palm-portable-keyboard-into-a-bluetooth-enabled-accessory-9ac6c659c1f3) on hackster.io.
-- [A Palm Portable Keyboard Bluetooth Adapter](https://www.hackster.io/news/upcycling-a-palm-portable-keyboard-into-a-bluetooth-enabled-accessory-9ac6c659c1f3) on Adafruit blog.
+                                                                     7 8 9 +
+                                                                     4 5 6 -
+                                                                     1 2 3 {Enter}
+                                                                     {0} . {Enter}
 
-![Bluetooth Palm Portable Keyboard's stand supporting an iPhone](/images/ppk_demo_iphone.jpg "Bluetooth Palm Portable Keyboard working with a phone")
+* My philosophy on keyboard layout is keep IBM PC layout, but map to commodore someway
+   never do I like to do native Commodore layout once I was introduced to IBM XT, etc. keyboards
+   someone could add a native layout in their own fork and/or a new pull request
+* Fn Done is Home, Fn Shift Done is Clear screen
+* Num Pad mode (Fn =) toggle keys 7890,UIOP,JKL;,M,./ with numpad 789+,456-,123{Enter},00.{Enter} toggles Enter/Return, and toggles cursor keys between C64 and C128, Fn+key can temporarily use numpad key or opposite (note Vic-20, C64, etc. support numpad, cursor keys, and some others using software mapping in the Commodore emulator to a 64-key matrix)
+* Fn Lshift Rshift together toggles shift lock
+* Caps, Alt works in C128 mode only, Fn+Done:Esc, Fn+Date:Help, Fn+Phone:LF, Fn+ToDo:40/80(toggle), Fn+Memo=NoScroll
+* The following characters are mapped to PETSCII graphics for use with minimal (Apple 1 like environment) 
+also supported by 6502 emulator: {}`~|£ to round out full 7-bit ASCII support
+* Use instructions: build, deploy, attach adapter to PPK so is turned on, will automatically be in pairing mode, then launch emulator on ESP32 target, should pair automatically, and type in your next greatest Commodore creation.
 
+PPK 8x11 matrix apparently (see 7 vs. 8, etc.)
+*but* using decimal here for simplicity
+
+       __0___1___2___3___4___5___6___7___8___9__
+     0 | 1 | 2 | 3 | Z | 4 | 5 | 6 | 7 |Cmd| Q |
+    10 | W | E | R | T | Y | ` | X | A | S | D |
+    20 | F | G | H |Spc|Cap|Tab|Ctr|
+    30 |               | Fn|Alt|
+    40 |               | C | V | B | N | - | = |
+    50 | Bs|Dat| 8 | 9 | 0 |Sp2| [ | ] | \ |Pho|
+    60 | U | I | O | P | ' |Ent|ToD|   | J | K |
+    70 | L | ; | / | Up|Mem|   | M | , | . |Don|
+    80 |Del| Lt| Dn| Rt|               |LSh|RSh|
+
+```
+22 named keys including space
+26 alphabetical
+10 numeric
+11 punctuation
+--
+69 sub total
+21 unused positions, at least for keys (maybe other GPIO)
+--
+90 grand total
+```
+
+Looks like there used to be a key next to 1 never completely engineered out as the 1 is slim.  Late change?  Esc or Home or such.
