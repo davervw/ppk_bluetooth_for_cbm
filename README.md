@@ -18,7 +18,49 @@ Palm Portable Keyboard
     LShf  Z   X   C   V   B   N   M   ,   .   /   RShft Up     Memo
     Ctl Fn Alt Cmd {Space  Bar}Spc2 ` Done{Delete}Lt Dn Rt
 
-Mapping to Commodore 64, etc.
+Commodore 64 / Vic-20
+
+    ←   1   2   3   4   5   6   7   8   9   0   +   -   £   CH   Dl    F1
+    Cntl Q   W   E   R   T   Y   U   I   O   P   @   *   ↑   {Rest}    F3
+    RS SL A   S   D   F   G   H   J   K   L   :   ;   =   {Return }    F5
+    C=  Sh  Z  X   C   V   B   N   M   ,   .   /   {Shif} Up/Dn L/R    F7
+               {Space                       Bar} 
+
+Commodore 128
+
+    Esc Tab Alt Cap     Help LF 40/80 NoScroll     Up Dn Lt Rt         F1  F3  F5  F7
+
+    ←   1   2   3   4   5   6   7   8   9   0   +   -   £   CH   Dl    7   8   9   +
+    Cntl Q   W   E   R   T   Y   U   I   O   P   @   *   ↑   {Rest}    4   5   6   -
+    RS SL A   S   D   F   G   H   J   K   L   :   ;   =   {Return }    1   2   3   {Enter}
+    C=  Sh  Z  X   C   V   B   N   M   ,   .   /   {Shif} Up/Dn L/R    {0   }  .   {Enter}
+               {Space                       Bar} 
+
+PPK C64 Normal
+
+       1   2   3   4   5   6   7   8   9   0   -   =  Back     F1
+    Tab q   w   e   r   t   y   u   i   o   p   [   ]    £     F3
+    Cap  a   s   d   f   g   h   j   k   l   ;   '   Retrn     F5
+    LShf  z   x   c   v   b   n   m   ,   .   /   RShft Up     F7
+    Ctr Fn Alt Cbm {Space  Bar}Rest ` Stop{Delete}Lt Dn Rt
+
+PPK C64 Shift
+
+       !   @   #   $   %   ↑   &   *   (   )   ←   +   Ins     F2
+    Tab Q   W   E   R   T   Y   U   I   O   P   {   }    |     F4
+    Cap  A   S   D   F   G   H   J   K   L   :   "   Retrn     F6
+    LShf  Z   X   C   V   B   N   M   <   >   ?   RShft Up     F8
+    Ctr Fn Alt Cbm {Space  Bar}Rest ~ Stop{Delete}Lt Dn Rt
+
+PPK C64 Fn (and Numlock)
+
+                               7   8   9   +       =  Home     Help
+                                4   5   6   -                  LineFeed
+                                 1   2   3   En      Enter     40/80Display
+    LShf                          0   0   .   En  RShft Up     NoScroll
+                                      Esc {Home } Lt Dn Rt
+
+PPK C64 Caps
 
        1   2   3   4   5   6   7   8   9   0   -   =  Back     F1
     Tab Q   W   E   R   T   Y   U   I   O   P   [   ]    £     F3
@@ -26,19 +68,10 @@ Mapping to Commodore 64, etc.
     LShf  Z   X   C   V   B   N   M   ,   .   /   RShft Up     F7
     Ctr Fn Alt Cbm {Space  Bar}Rest ` Stop{Delete}Lt Dn Rt
 
-C128 adds more keys on top row, and a numeric keypad.  Most don't exist on Palm
-
-    Esc Tab Alt Cap     Help LF 40/80 NoScroll     Up Dn Lt Rt      F1 F3 F5 F7
-
-                                                                     7 8 9 +
-                                                                     4 5 6 -
-                                                                     1 2 3 {Enter}
-                                                                     {0} . {Enter}
-
 * My philosophy on keyboard layout is keep IBM PC layout, but map to commodore someway
    never do I like to do native Commodore layout once I was introduced to IBM XT, etc. keyboards
    someone could add a native layout in their own fork and/or a new pull request
-* Fn Done is Home, Fn Shift Done is Clear screen
+* Fn Del/BS is Home, Fn Shift Del/BS is Clear screen
 * Num Pad mode (Fn =) toggle keys 7890,UIOP,JKL;,M,./ with numpad 789+,456-,123{Enter},00.{Enter} toggles Enter/Return, and toggles cursor keys between C64 and C128, Fn+key can temporarily use numpad key or opposite (note Vic-20, C64, etc. support numpad, cursor keys, and some others using software mapping in the Commodore emulator to a 64-key matrix)
 * Fn Lshift Rshift together toggles shift lock
 * Caps, Alt works in C128 mode only, Fn+Done:Esc, Fn+Date:Help, Fn+Phone:LF, Fn+ToDo:40/80(toggle), Fn+Memo=NoScroll
