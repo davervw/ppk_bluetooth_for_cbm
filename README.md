@@ -1,5 +1,7 @@
 # Palm Portable Keyboard Bluetooth adapter firmware for a Commodore Emulator
 
+(Also see link to blog: [palm-portable-keyboard-for-my-custom](https://techwithdave.davevw.com/2026/05/palm-portable-keyboard-for-my-custom.html) [Commodore Emulators])
+
 This project specifically supports [Unified branch of davervw/c-simple-emu6502-cbm](https://github.com/davervw/c-simple-emu6502-cbm/tree/unified) so that keypresses are sent to the emulator so the systems think a full Commodore keyboard is attached.  Some "magic" (mapping) is included to have one code base support Vic-20, Commodore 64, Commodore 128, and a resemblence of a minimal 6502 system similar to Apple 1.  (Note the emulator is not game nor sound compatible, the emphasis is on coding, wearables, and cross-platform deployments.  More notes over at the emulator's link above.)
 
 The advantage of a bluetooth keyboard is no cords of course.  BLE is supported by most all ESP32 targets which is a large number of my targets for the emulator.
