@@ -95,7 +95,7 @@ unsigned long last_pressed = 0;
 // got PPK matrix codes by running this program in diagnostic mode, typing all keys, see README.md for diagram
 //
 //    __0___1___2___3___4___5___6___7___8___9__
-//  0 | 1 | 2 | 3 | Z | 4 | 5 | 6 | 7 |Cmd| Q |
+// 00 | 1 | 2 | 3 | Z | 4 | 5 | 6 | 7 |Cmd| Q |
 // 10 | W | E | R | T | Y | ` | X | A | S | D |
 // 20 | F | G | H |Spc|Cap|Tab|Ctr|
 // 30 |               | Fn|Alt|
@@ -105,10 +105,21 @@ unsigned long last_pressed = 0;
 // 70 | L | ; | / | Up|Mem|   | M | , | . |Don|
 // 80 |Del| Lt| Dn| Rt|               |LSh|RSh|
 
-// C64 scancodes indexed by Palm Portable Keyboard scancodes above
-// C64 scancodes ref: https://sta.c64.org/cbm64kbdcode2.html
-// C128 scancodes ref: http://commodore128.mirkosoft.sk/keyboard.html
+// Commodore 64 (0..63) and 128 (0..87) scancodes
+// c-simple-emu6502-cbm ref: https://github.com/davervw/c-simple-emu6502-cbm/blob/unified/src/c-simple-emu6502-cbm/C128ScanCode.h
 // Also see ref: https://github.com/davervw/c-keymaps
+//    __0___1___2___3___4___5___6___7___8___9__
+// 00 |Del|Ret|LRt|F7 |F1 |F3 |F5 |UDn| 3 | W |
+// 10 | A | 4 | Z | S | E |LSh| 5 | R | D | 6 |
+// 20 | C | F | T | X | 7 | Y | G | 8 | B | H |
+// 30 | U | V | 9 | I | J | 0 | M | K | O | N |
+// 40 | + | P | L | - | . | : | @ | , | £ | * |
+// 50 | ; |Hom|RSh| = |UpA| / | 1 |LtA|Ctr| 2 |
+// 60 |Spc|Cbm| Q |Sto|Hel|#8#|#5#|Tab|#2#|#4#|
+// 70 |#7#|#1#|Esc|#+#|#-#|LF |Ent|#6#|#9#|#3#|
+// 80 |Alt|#0#|#.#|Up |Dn |Lt |Rt |NS |
+
+// C64 scancodes indexed by Palm Portable Keyboard scancodes above
 const short c128_keymap[128] = {
 /*  0: */ 56, 59, 8, 12, 11, 16, 19, 24, 61, 62,
 /* 10: */ 9, 14, 17, 22, 25, DOCBM+17, 23, 10, 13, 18,
@@ -120,6 +131,11 @@ const short c128_keymap[128] = {
 /* 70: */ 42, 50, 55, DOSHIFT+7, 3, NOKEY, 36, 47, 44, 63,
 /* 80: */ 0, DOSHIFT+2, 7, 2, NOKEY, NOKEY, NOKEY, NOKEY, 15, 52,
 };
+//    1   2   3   4   5   6   7   8   9   0   -   =  Back     F1
+// Tab q   w   e   r   t   y   u   i   o   p   [   ]    £     F3
+// Cap  a   s   d   f   g   h   j   k   l   ;   '   Retrn     F5
+// LShf  z   x   c   v   b   n   m   ,   .   /   RShft Up     F7
+// Ctr Fn Alt Cbm {Space  Bar}Rest ` Stop{Delete}Lt Dn Rt
 
 // when shift is pressed, these can override the normal keymap
 const short shift_c128_keymap[128] = {
@@ -133,6 +149,11 @@ const short shift_c128_keymap[128] = {
 /* 70: */ NOKEY, NOSHIFT+45, NOKEY, NOKEY, NOKEY, NOKEY, NOKEY, NOKEY, NOKEY, NOKEY,
 /* 80: */ NOKEY, NOKEY, NOKEY, NOKEY, NOKEY, NOKEY, NOKEY, NOKEY, 15, 52,
 };
+//    !   @   #   $   %   ↑   &   *   (   )   ←   +   Ins     F2
+// Tab Q   W   E   R   T   Y   U   I   O   P   {   }    |     F4
+// Cap  A   S   D   F   G   H   J   K   L   :   "   Retrn     F6
+// LShf  Z   X   C   V   B   N   M   <   >   ?   RShft Up     F8
+// Ctr Fn Alt Cbm {Space  Bar}Rest ~ Stop{Delete}Lt Dn Rt
 
 // when fn is pressed
 const short fn_c128_keymap[128] = {
@@ -146,6 +167,11 @@ const short fn_c128_keymap[128] = {
 /* 70: */ 79, 76, 76, 83, 87, NOKEY, 81, 81, 44, 72,
 /* 80: */ 51, 85, 84, 86, NOKEY, NOKEY, NOKEY, NOKEY, 15, 52,
 };
+//                            7   8   9   +       =  Home     Help
+//                             4   5   6   -                  LineFeed
+//                              1   2   3   En      Enter     40/80Display
+// LShf                          0   0   .   En  RShft Up     NoScroll
+//                                   Esc {Home } Lt Dn Rt
 
 // numeric keypad mask for toggling definitions between normal and keypad(fn)
 const bool numlock_c128_keymap[128] = {
@@ -159,6 +185,13 @@ const bool numlock_c128_keymap[128] = {
 /* 70: */ 1, 1, 1, 1, 0, 0, 1, 1, 1, 0,
 /* 80: */ 0, 1, 1, 1, 0, 0, 0, 0, 0, 0,
 };
+
+// PPK CBM Caps handled by Commodore 128 ROM
+//    1   2   3   4   5   6   7   8   9   0   -   =  Back     F1
+// Tab Q   W   E   R   T   Y   U   I   O   P   [   ]    £     F3
+// Cap  A   S   D   F   G   H   J   K   L   ;   '   Retrn     F5
+// LShf  Z   X   C   V   B   N   M   ,   .   /   RShft Up     F7
+// Ctr Fn Alt Cbm {Space  Bar}Rest ` Stop{Delete}Lt Dn Rt
 
 void config_keymap() {
   if (sizeof(c128_keymap) != sizeof(key_map))

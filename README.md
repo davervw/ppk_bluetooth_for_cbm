@@ -38,7 +38,7 @@ Commodore 128
     C=  Sh  Z  X   C   V   B   N   M   ,   .   /   {Shif} Up/Dn L/R    {0   }  .   {Enter}
                {Space                       Bar} 
 
-PPK C64 Normal
+PPK CBM Normal
 
        1   2   3   4   5   6   7   8   9   0   -   =  Back     F1
     Tab q   w   e   r   t   y   u   i   o   p   [   ]    £     F3
@@ -46,7 +46,7 @@ PPK C64 Normal
     LShf  z   x   c   v   b   n   m   ,   .   /   RShft Up     F7
     Ctr Fn Alt Cbm {Space  Bar}Rest ` Stop{Delete}Lt Dn Rt
 
-PPK C64 Shift
+PPK CBM Shift
 
        !   @   #   $   %   ↑   &   *   (   )   ←   +   Ins     F2
     Tab Q   W   E   R   T   Y   U   I   O   P   {   }    |     F4
@@ -54,7 +54,7 @@ PPK C64 Shift
     LShf  Z   X   C   V   B   N   M   <   >   ?   RShft Up     F8
     Ctr Fn Alt Cbm {Space  Bar}Rest ~ Stop{Delete}Lt Dn Rt
 
-PPK C64 Fn (and Numlock)
+PPK CBM Fn (and Numlock)
 
                                7   8   9   +       =  Home     Help
                                 4   5   6   -                  LineFeed
@@ -62,7 +62,7 @@ PPK C64 Fn (and Numlock)
     LShf                          0   0   .   En  RShft Up     NoScroll
                                       Esc {Home } Lt Dn Rt
 
-PPK C64 Caps
+PPK CBM Caps
 
        1   2   3   4   5   6   7   8   9   0   -   =  Back     F1
     Tab Q   W   E   R   T   Y   U   I   O   P   [   ]    £     F3
